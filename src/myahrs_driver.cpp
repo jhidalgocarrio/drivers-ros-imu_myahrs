@@ -53,7 +53,7 @@ private:
   ros::Publisher imu_mag_pub_;
   ros::Publisher imu_temperature_pub_;
 
-  tf::TransformBroadcaster broadcaster_;
+  //tf::TransformBroadcaster broadcaster_;
 
   Platform::Mutex lock_;
   SensorData sensor_data_;
@@ -88,7 +88,7 @@ public:
     // default frame id
     nh_priv_.param("frame_id", frame_id_, std::string("imu_link"));
     // for testing the tf
-    nh_priv_.param("parent_frame_id_", parent_frame_id_, std::string("base_link"));
+    //nh_priv_.param("parent_frame_id_", parent_frame_id_, std::string("base_link"));
     // defaults obtained experimentally from device
     nh_priv_.param("linear_acceleration_stddev", linear_acceleration_stddev_, 0.026831);
     nh_priv_.param("angular_velocity_stddev", angular_velocity_stddev_, 0.002428);
@@ -236,9 +236,9 @@ public:
     imu_temperature_pub_.publish(imu_temperature_msg);
 
     // publish tf
-    broadcaster_.sendTransform(tf::StampedTransform(tf::Transform(tf::createQuaternionFromRPY(roll, pitch, yaw),
-                                                                  tf::Vector3(0.0, 0.0, 0.0)),
-                                                    ros::Time::now(), parent_frame_id_, frame_id_));
+    //broadcaster_.sendTransform(tf::StampedTransform(tf::Transform(tf::createQuaternionFromRPY(roll, pitch, yaw),
+    //                                                              tf::Vector3(0.0, 0.0, 0.0)),
+    //                                                ros::Time::now(), parent_frame_id_, frame_id_));
   }
 };
 
